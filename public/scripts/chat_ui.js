@@ -1,9 +1,9 @@
-function divEscapedContentElement(message){
-	return $('<div></div>').text(message);
+function divEscapedContentElement(message, cls){
+	return $('<div class="' + cls + '"></div>').text(message);
 }
 
-function divSystemContentElement(message){
-	return $('<div></div>').html('<i>' + message + '</i>');
+function divSystemContentElement(message, cls){
+	return $('<div class="' + cls + '"></div>').html('<i>' + message + '</i>');
 }
 
 function processUserInput(chatApp, socket){
@@ -12,11 +12,11 @@ function processUserInput(chatApp, socket){
 	if(message.charAt(0) == '/'){
 		systemMessage = chatApp.processCommand(message);
 		if(systemMessage){
-			$('#messages').append(divSystemContentElement(systemMessage));
+			$('#messages').append(divSystemContentElement(systemMessage, 'sys'));
 		}
 	} else {
 		chatApp.sendMessage($('#room').text(), message);
-		$('#messages').append(divEscapedContentElement(message));
+		$('#messages').append(divEscapedContentElement(message, 'mine'));
 	}
 
 	$('#messages').scrollTop($('#messages').prop('scrollHeight'));
@@ -35,18 +35,18 @@ socket.on('nameResult', function(result){
 		message = result.message;
 	}
 
-	$('#messages').append(divSystemContentElement(message));
+	$('#messages').append(divSystemContentElement(message, 'sys'));
 	$('#messages').scrollTop($('#messages').prop('scrollHeight'));
 });
 
 socket.on('joinResult', function(result){
 	$('#room').text(result.room);
-	$('#messages').append(divSystemContentElement('Room changed.'));
+	$('#messages').append(divSystemContentElement('Room changed.', 'sys'));
 	$('#messages').scrollTop($('#messages').prop('scrollHeight'));
 });
 
 socket.on('message', function(message){
-	var newElement = $('<div></div>').text(message.text);
+	var newElement = $('<div class="others"></div>').text(message.text);
 	$('#messages').append(newElement);
 	$('#messages').scrollTop($('#messages').prop('scrollHeight'));
 });

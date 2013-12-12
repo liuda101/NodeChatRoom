@@ -1,9 +1,21 @@
-body{padding: 50px; font:14px "Lucida Grande", Helvetica, Arial, sans-serif;}
+body{padding: 0px; font:14px "Lucida Grande", Helvetica, Arial, sans-serif; margin:0;}
+
+
 
 a{color:#00b7ff;}
 
-#content{width:800px; margin:0 auto;}
+#content{width:1024px; margin:0 auto;}
 
-#room{background-color:#ddd; margin-bottom:1em;}
+#room, #room-list{display: none;}
 
-#messages{width:690px; height:300px; overflow:auto; background-color:#eee; margin-bottom:1em; margin-right:10px;}
+#messages{padding:20px 20px 60px 20px; margin-top:100px; height:567px; overflow:auto; background-color:rgba(0,0,0,0.618); box-shadow:0px 0px 20px rgba(255,100,100,1);}
+
+#send-form{margin-top:-50px; text-align: center;}
+#send-form input{border:none; line-height:20px; height:20px; font-size:20px; width:500px; padding:5px; box-shadow:0px 0px 5px rgba(255,0,255,0.9);}
+
+body{background:url(../images/shq.jpg) center repeat;}
+
+.messages{color:rgb(0,255,0); text-shadow:1px 1px 1px rgba(255,255,255,0.6);}
+.messages>div{padding:5px; border-bottom:1px solid rgba(255,255,255,0.1);}
+.sys{color:rgb(150,180,255); text-align: center;}
+.mine{color:rgb(255,100,100); text-align: right;}

@@ -2,7 +2,6 @@ var http = require('http');
 var fs = require('fs');
 var path = require('path');
 var mime = require('mime');
-var cache = {};
 
 function send404(res){
 	res.writeHead(404, {'Content-Type': 'text/plain'});
@@ -15,25 +14,20 @@ function sendFile(res, filePath, fileContents){
 	res.end(fileContents);
 }
 
-function serveStatic(res, cache, absPath){
-	if(cache[absPath]){
-		sendFile(res, absPath, cache[absPath]);
-	} else {
-		fs.exists(absPath, function(exists){
-			if(exists){
-				fs.readFile(absPath, function(err, data){
-					if(err){
-						send404(res);
-					} else {
-						cache[absPath] = data;
-						sendFile(res, absPath, data);
-					}
-				});
-			} else {
-				send404(res);
-			}
-		});
-	}
+function serveStatic(res, absPath){
+	fs.exists(absPath, function(exists){
+		if(exists){
+			fs.readFile(absPath, function(err, data){
+				if(err){
+					send404(res);
+				} else {
+					sendFile(res, absPath, data);
+				}
+			});
+		} else {
+			send404(res);
+		}
+	});
 }
 
 var server = http.createServer(function(req, res){
@@ -47,7 +41,7 @@ var server = http.createServer(function(req, res){
 
 	var absPath = './' + filePath;
 
-	serveStatic(res, cache, absPath);
+	serveStatic(res, absPath);
 });
 
 server.listen(8080, function(){
