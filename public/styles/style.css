@@ -192,3 +192,11 @@ body{background:url(../images/shq.jpg) center repeat;}
 
 
 .sys img, .mine img, .others img{height:100px;}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5){
+	#content{width:auto; margin:0px 15px; position:absolute; top:0px; bottom:0px; left:15px; right:15px;}
+	#messages{margin-top:0px;position:absolute; top:10px; left:0px; right:0px; height:auto; bottom:50px;-webkit-animation:none;box-shadow:none;}
+	#send-form{margin-top:0px; position: absolute; bottom:10px; left:0px; width:100%;}
+	#send-form input{width:200px;-webkit-animation:none;box-shadow:none;}
+	.messages{text-shadow:none;}
+}
