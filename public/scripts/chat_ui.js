@@ -37,19 +37,6 @@ function generateNotification(obj){
 	}
 }
 
-// !
-function parseMessage(tag){
-	if(tag){
-		if(tag.indexOf('!') == 0){
-			return '<img src="' + tag.substring(1) + '" />';
-		} else {
-			return tag;
-		}
-	} else {
-		return '';
-	}
-}
-
 function processUserInput(chatApp, socket){
 	var message = $('#send-message').val();
 	var systemMessage;
@@ -97,7 +84,7 @@ socket.on('message', function(message){
 			$('#messages').scrollTop($('#messages').prop('scrollHeight'));
 		break;
 		case 2:
-			var newElement = $('<div class="others"></div>').text(message.nickname + ':' + parseMessage(message.message));
+			var newElement = $('<div class="others"></div>').text(message.nickname + ':' + message.message);
 			$('#messages').append(newElement);
 			$('#messages').scrollTop($('#messages').prop('scrollHeight'));
 			generateNotification({
