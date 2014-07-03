@@ -163,7 +163,7 @@ a{color:#00b7ff;}
 
 #room, #room-list{display: none;}
 
-#messages{padding:20px; margin-top:100px; height:567px; overflow:auto; background-color:rgba(0,0,0,0.618);
+#messages{padding:20px; margin-top:10px; height:567px; overflow:auto; background-color:rgba(0,0,0,0.618);
 	-webkit-animation:largeBlink 10s ease-out infinite alternate; box-shadow:0px 0px 20px rgba(255,100,100,1);
 }
 
